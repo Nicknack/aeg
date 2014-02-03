@@ -1,8 +1,9 @@
 require "class"
 
-Sprite = class(function(s,x,y)
+Sprite = class(function(s,m,x,y)
 	s.x=x
 	s.y=y
+	s.map=m
 	
    s.img=love.graphics.newImage( "nerdy.png" )
    s.img:setFilter("nearest", "linear")
@@ -29,8 +30,10 @@ function Sprite:setPos(nx,ny)
 end
 
 function Sprite:move(dx,dy)
+	self.map:setOccupied(self.x+34/2,self.y+46,0)
 	self.x=self.x+dx
 	self.y=self.y+dy
+	self.map:setOccupied(self.x+34/2,self.y+46,1)
 end
 
 function Sprite:setFrame(f)
